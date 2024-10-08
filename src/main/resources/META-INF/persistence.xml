@@ -2,8 +2,22 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
-             version="3.2">
-    <persistence-unit name="PersistenceOptimizer">
+             version="3.0">
+    <persistence-unit name="PersistenceOptimizer" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>app.emp.entities.Employee</class>
+        <class>app.emp.entities.Department</class>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/emp_managerV2"/>
+            <property name="hibernate.connection.password" value="1360"/>
+            <property name="hibernate.connection.username" value="postgre"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            
+        </properties>
 
     </persistence-unit>
 </persistence>
