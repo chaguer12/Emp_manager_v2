@@ -17,7 +17,5 @@ public class Main {
         trns.begin();
         em.persist(emp);
         trns.commit();
-
-
     }
 }
