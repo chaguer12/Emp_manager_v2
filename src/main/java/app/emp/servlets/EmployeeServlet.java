@@ -11,9 +11,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 public class EmployeeServlet extends HttpServlet {
-    private EmployeeServiceInterface empService ;
+    private EmployeeServiceInterface empService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -23,43 +24,49 @@ public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("_method");
-        if(action != null){
-            switch(action){
+        if (action != null) {
+            switch (action) {
                 case "UPDATE":
-                    updateEmployee(req,resp);
+                    updateEmployee(req, resp);
                     break;
                 case "PATCH":
-                    dataTransporter(req,resp);
+                    dataTransporter(req, resp);
                     break;
                 case "LIST":
-                    listEmplos(req,resp);
+                    listEmplos(req, resp);
                     break;
                 default:
-                    listEmplos(req,resp);
+                    listEmplos(req, resp);
                     break;
 
             }
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            String method = req.getParameter("_method");
-            switch(method){
-                case "DELETE":
-                    doDelete(req, resp);
-                    break;
-                case "ADD":
-                    insert(req, resp);
-                    break;
-                case "UPDATE":
-                    updateEmployee(req,resp);
-                    break;
-                default:
-                    listEmplos(req,resp);
-            }
+        String method = req.getParameter("_method");
+        switch (method) {
+            case "DELETE":
+                doDelete(req, resp);
+                break;
+            case "ADD":
+                insert(req, resp);
+                break;
+            case "UPDATE":
+                updateEmployee(req, resp);
+                break;
+            default:
+                listEmplos(req, resp);
+        }
     }
-        
 
-
-
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UUID id = req.getParameter();
+        Employee emp = empService.getEmployeeById(id);
+        empService.deleteEmployee(emp);
+        resp.sendRedirect("/emplist");
+    }
 }
+
