@@ -12,12 +12,8 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String name;
-    private String family;
-    private String email;
-    private String password;
-    private String poste;
-    private double nss;
-    private Date date_insertion;
+
+
+
 
 }
