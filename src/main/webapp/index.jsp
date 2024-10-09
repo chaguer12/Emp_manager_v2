@@ -26,8 +26,17 @@
             <label for="email">Email :</label><br>
             <input type="email" id="email" name="email" required><br><br>
 
+            <label for="password">password :</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+
             <label for="poste">Poste :</label><br>
             <input type="text" id="poste" name="poste" required><br><br>
+
+            <label for="nss">NSS :</label><br>
+            <input type="number" id="nss" name="nss"><br><br>
+
+            <label for="insertion">Insertion : </label><br>
+            <input type="date" id="insertion" name="insertion"><br><br>
 
             <label for="departement">Département :</label><br>
             <input type="text" id="departement" name="departement" required><br><br>

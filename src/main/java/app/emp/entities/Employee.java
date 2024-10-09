@@ -19,11 +19,9 @@ public class Employee {
     private String password;
     private double nss;
     private Date date_insertion;
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
+    private String department;
 
-    public Employee(String name, String lastname, String tel, String email, String poste, String password, double nss, Date date_insertion, Department department) {
+    public Employee(String name, String lastname, String tel, String email, String poste, String password, double nss, Date date_insertion, String department) {
         this.name = name;
         this.lastname = lastname;
         this.tel = tel;
@@ -111,11 +109,11 @@ public class Employee {
         this.poste = poste;
     }
 
-    public Department getDepartment() {
+    public String getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(String department) {
         this.department = department;
     }
 

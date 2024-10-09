@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.UUID;
+import java.sql.Date;
+
 
 public class EmployeeServlet extends HttpServlet {
     private EmployeeServiceInterface empService;
@@ -27,16 +27,16 @@ public class EmployeeServlet extends HttpServlet {
         if (action != null) {
             switch (action) {
                 case "UPDATE":
-                    updateEmployee(req, resp);
+                    //updateEmployee(req, resp);
                     break;
                 case "PATCH":
-                    dataTransporter(req, resp);
+                    //dataTransporter(req, resp);
                     break;
                 case "LIST":
-                    listEmplos(req, resp);
+                    //listEmplos(req, resp);
                     break;
                 default:
-                    listEmplos(req, resp);
+                    //listEmplos(req, resp);
                     break;
 
             }
@@ -54,19 +54,35 @@ public class EmployeeServlet extends HttpServlet {
                 insert(req, resp);
                 break;
             case "UPDATE":
-                updateEmployee(req, resp);
+                //updateEmployee(req, resp);
                 break;
             default:
-                listEmplos(req, resp);
+                //listEmplos(req, resp);
         }
     }
 
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UUID id = req.getParameter();
-        Employee emp = empService.getEmployeeById(id);
-        empService.deleteEmployee(emp);
-        resp.sendRedirect("/emplist");
+//    @Override
+//    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        UUID id = req.getParameter();
+//        Employee emp = empService.getEmployeeById(id);
+//        empService.deleteEmployee(emp);
+//        resp.sendRedirect("/emplist");
+//    }
+    private void insert(HttpServletRequest req, HttpServletResponse resp)throws IOException{
+        String name = req.getParameter("nom");
+        String lastName = req.getParameter("prenom");
+        String tel = req.getParameter("tel");
+        String email = req.getParameter("email");
+        String poste = req.getParameter("poste");
+        String dprt = req.getParameter("departement");
+        String password = req.getParameter("password");
+        Double nss = Double.valueOf(req.getParameter("nss"));
+        String date = req.getParameter("insertion");
+        Date insertion = Date.valueOf(date);
+        Employee emp = new Employee(name,lastName,tel,email,poste,password,nss,insertion,dprt);
+        empService.save(emp);
+        resp.sendRedirect("/");
     }
+
 }
 
