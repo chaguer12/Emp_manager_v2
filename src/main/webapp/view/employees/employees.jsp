@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Employees</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/emplos.css">
 </head>
 <body>
 <!-- Employee List Section -->
@@ -37,12 +37,12 @@
                 <td>${employee.getDepartment()}</td>
 
                 <td>
-                    <form action="/delete-emp" method="post" enctype="application/x-www-form-urlencoded">
+                    <form action="${pageContext.request.contextPath}/delete-emp" method="post" enctype="application/x-www-form-urlencoded">
                         <input hidden name="_method" value="DELETE">
                         <input hidden name="id" value="${employee.getId()}">
                         <button type="submit" onclick="deleteEmployee(${employee.getId()})">Supprimer</button>
                     </form>
-                    <form action="/update-emp" method="get" enctype="application/x-www-form-urlencoded">
+                    <form action="${pageContext.request.contextPath}/update-emp" method="get" enctype="application/x-www-form-urlencoded">
                         <input hidden name="_method" value="PATCH">
                         <input hidden name="id" value="${employee.getId()}">
                         <button id="edit-btn"  type="submit" >Modifier</button>

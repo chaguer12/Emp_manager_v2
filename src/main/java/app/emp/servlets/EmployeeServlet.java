@@ -13,8 +13,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+import java.util.UUID;
 
-@WebServlet(name = "EmployeeServlet", value = {"/add-employee","/emplist"})
+@WebServlet(name = "EmployeeServlet", value = {"/add-employee","/emplist","delete-emp"})
 public class EmployeeServlet extends HttpServlet {
     private EmployeeServiceInterface empService;
 
@@ -38,7 +39,7 @@ public class EmployeeServlet extends HttpServlet {
                     listEmplos(req, resp);
                     break;
                 default:
-                    //listEmplos(req, resp);
+                    listEmplos(req, resp);
                     break;
 
             }
@@ -59,17 +60,17 @@ public class EmployeeServlet extends HttpServlet {
                 //updateEmployee(req, resp);
                 break;
             default:
-                //listEmplos(req, resp);
+                listEmplos(req, resp);
         }
     }
 
-//    @Override
-//    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        UUID id = req.getParameter();
-//        Employee emp = empService.getEmployeeById(id);
-//        empService.deleteEmployee(emp);
-//        resp.sendRedirect("/emplist");
-//    }
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UUID id = UUID.fromString(req.getParameter("id"));
+        Employee emp = empService.getEmployeeById(id);
+        empService.deleteEmployee(emp);
+        resp.sendRedirect("/emplist");
+    }
     private void insert(HttpServletRequest req, HttpServletResponse resp)throws IOException{
         String name = req.getParameter("nom");
         String lastName = req.getParameter("prenom");
@@ -90,8 +91,6 @@ public class EmployeeServlet extends HttpServlet {
         List<Employee> emplos = empService.getEmployees();
         req.setAttribute("employees",emplos);
         req.getRequestDispatcher("view/employees/employees.jsp").forward(req,resp);
-
     }
-
 }
 

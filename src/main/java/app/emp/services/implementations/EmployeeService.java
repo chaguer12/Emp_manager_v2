@@ -6,6 +6,7 @@ import app.emp.entities.Employee;
 import app.emp.services.interfaces.EmployeeServiceInterface;
 
 import java.util.List;
+import java.util.UUID;
 
 public class EmployeeService implements EmployeeServiceInterface {
     private EmployeeInterfaceDAO dao = new EmployeeDAO();
@@ -19,14 +20,14 @@ public class EmployeeService implements EmployeeServiceInterface {
         List<Employee> emplos = dao.getEmployees();
         return emplos;
     }
-//    @Override
-//    public void deleteEmployee(Employee employee) {
-//        dao.deleteEmployee(employee);
-//    }
-//    @Override
-//    public Employee getEmployeeById(int id){
-//        return dao.getEmployeeById(id);
-//    }
+    @Override
+    public void deleteEmployee(Employee employee) {
+        dao.deleteEmployee(employee);
+    }
+    @Override
+    public Employee getEmployeeById(UUID id){
+        return dao.getEmployeeById(id);
+    }
 //    @Override
 //    public void updateEmployee(Employee employee) {
 //        dao.updateEmployee(employee);
