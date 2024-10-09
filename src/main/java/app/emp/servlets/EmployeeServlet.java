@@ -5,14 +5,16 @@ import app.emp.services.implementations.EmployeeService;
 import app.emp.services.interfaces.EmployeeServiceInterface;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
-
+@WebServlet(name = "EmployeeServlet", value = {"/add-employee","/emplist"})
 public class EmployeeServlet extends HttpServlet {
     private EmployeeServiceInterface empService;
 
@@ -33,7 +35,7 @@ public class EmployeeServlet extends HttpServlet {
                     //dataTransporter(req, resp);
                     break;
                 case "LIST":
-                    //listEmplos(req, resp);
+                    listEmplos(req, resp);
                     break;
                 default:
                     //listEmplos(req, resp);
@@ -82,6 +84,13 @@ public class EmployeeServlet extends HttpServlet {
         Employee emp = new Employee(name,lastName,tel,email,poste,password,nss,insertion,dprt);
         empService.save(emp);
         resp.sendRedirect("/");
+    }
+
+    private void listEmplos(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        List<Employee> emplos = empService.getEmployees();
+        req.setAttribute("employees",emplos);
+        req.getRequestDispatcher("view/employees/employees.jsp").forward(req,resp);
+
     }
 
 }

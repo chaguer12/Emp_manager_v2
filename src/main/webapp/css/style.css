@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #eeeeee;
+    overflow: hidden; /* Prevent the body from scrolling */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    height: 100%; /* Fixed size for the page */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#add-form {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Make the form scrollable if it's too long */
+    max-height: 90vh; /* Ensure the form doesn’t exceed the viewport */
+}
+
+#add-form h1 {
+    text-align: center;
+    color: #333;
+}
+
+#add-form input, #add-form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; /* Add margin between input fields */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#add-form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#edit-btn {
+    background-color: #218838;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#add-form button:hover {
+    background-color: #218838;
+}
+
+#add-form label {
+    margin-bottom: 5px;
+    display: block;
+    font-weight: 500;
+    color: #333;
+}

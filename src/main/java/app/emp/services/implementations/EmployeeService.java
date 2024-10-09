@@ -14,11 +14,11 @@ public class EmployeeService implements EmployeeServiceInterface {
         dao.save(emp);
 
     }
-//    @Override
-//    public List<Employee> getEmployees() {
-//        List<Employee> emplos = dao.getEmployees();
-//        return emplos;
-//    }
+    @Override
+    public List<Employee> getEmployees() {
+        List<Employee> emplos = dao.getEmployees();
+        return emplos;
+    }
 //    @Override
 //    public void deleteEmployee(Employee employee) {
 //        dao.deleteEmployee(employee);
