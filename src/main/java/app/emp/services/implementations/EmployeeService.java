@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class EmployeeService implements EmployeeServiceInterface {
-    private EmployeeInterfaceDAO dao = new EmployeeDAO();
+    private final EmployeeInterfaceDAO dao = new EmployeeDAO();
     @Override
     public void save(Employee emp){
         dao.save(emp);
@@ -17,9 +17,8 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
     @Override
     public List<Employee> getEmployees() {
-        List<Employee> emplos = dao.getEmployees();
-        return emplos;
-    }
+        return dao.getEmployees();
+    } 
     @Override
     public void deleteEmployee(Employee employee) {
         dao.deleteEmployee(employee);

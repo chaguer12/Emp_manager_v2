@@ -12,10 +12,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet(name = "EmployeeServlet", value = {"/add-employee","/emplist","delete-emp"})
+@WebServlet(name = "EmployeeServlet", value = {"/add-employee","/emplist","/delete-emp"})
 public class EmployeeServlet extends HttpServlet {
     private EmployeeServiceInterface empService;
 
@@ -69,7 +70,7 @@ public class EmployeeServlet extends HttpServlet {
         UUID id = UUID.fromString(req.getParameter("id"));
         Employee emp = empService.getEmployeeById(id);
         empService.deleteEmployee(emp);
-        resp.sendRedirect("/emplist");
+        listEmplos(req, resp);
     }
     private void insert(HttpServletRequest req, HttpServletResponse resp)throws IOException{
         String name = req.getParameter("nom");
@@ -88,9 +89,9 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     private void listEmplos(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        List<Employee> emplos = empService.getEmployees();
-        req.setAttribute("employees",emplos);
-        req.getRequestDispatcher("view/employees/employees.jsp").forward(req,resp);
+        List<Employee> employees = empService.getEmployees();
+        req.setAttribute("employees",employees);
+        req.getRequestDispatcher("/view/employees/employees.jsp").forward(req,resp);
     }
 }
 

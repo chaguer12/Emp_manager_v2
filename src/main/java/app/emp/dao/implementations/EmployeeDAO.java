@@ -6,6 +6,7 @@ import app.emp.persistence.PersistenceFactoryManager;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class EmployeeDAO implements EmployeeInterfaceDAO {
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()) {
             Query query = em.createQuery("SELECT e FROM Employee e");
             emplos = query.getResultList();
+        emplos.stream().forEach(emp -> System.out.println("heeeey => => " + emp.getEmail()));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -40,6 +42,7 @@ public class EmployeeDAO implements EmployeeInterfaceDAO {
         return emplos;
     }
     @Override
+    @Transactional
     public void deleteEmployee(Employee emp){
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
             trns = em.getTransaction();
@@ -47,21 +50,19 @@ public class EmployeeDAO implements EmployeeInterfaceDAO {
             em.remove(emp);
             trns.commit();
         } catch (Exception e) {
-            if(trns != null){
-                trns.rollback();
-            }
             System.out.println(e.getMessage());
         }
     }
     @Override
     public Employee getEmployeeById(UUID id){
+        Employee emp = null;
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
-            Employee emp =  em.find(Employee.class,id);
+            emp =  em.find(Employee.class,id);
             return emp;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return null;
+        return emp;
 
     }
 }
