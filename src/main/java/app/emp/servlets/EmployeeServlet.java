@@ -69,8 +69,15 @@ public class EmployeeServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UUID id = UUID.fromString(req.getParameter("id"));
         Employee emp = empService.getEmployeeById(id);
-        empService.deleteEmployee(emp);
-        listEmplos(req, resp);
+        if(emp != null){
+            empService.deleteEmployee(emp);
+            listEmplos(req, resp);
+        }else{
+            System.out.println("heeeeeey => " + emp.getEmail());
+            resp.sendRedirect("/add-employee");
+
+        }
+
     }
     private void insert(HttpServletRequest req, HttpServletResponse resp)throws IOException{
         String name = req.getParameter("nom");

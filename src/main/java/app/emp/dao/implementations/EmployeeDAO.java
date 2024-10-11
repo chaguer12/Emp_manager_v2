@@ -34,7 +34,6 @@ public class EmployeeDAO implements EmployeeInterfaceDAO {
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()) {
             Query query = em.createQuery("SELECT e FROM Employee e");
             emplos = query.getResultList();
-        emplos.stream().forEach(emp -> System.out.println("heeeey => => " + emp.getEmail()));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -42,13 +41,14 @@ public class EmployeeDAO implements EmployeeInterfaceDAO {
         return emplos;
     }
     @Override
-    @Transactional
     public void deleteEmployee(Employee emp){
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
             trns = em.getTransaction();
             trns.begin();
-            em.remove(emp);
+            Employee emplo = em.merge(emp);
+            em.remove(emplo);
             trns.commit();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
