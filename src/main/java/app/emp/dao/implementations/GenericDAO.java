@@ -1,6 +1,6 @@
 package app.emp.dao.implementations;
 
-import app.emp.dao.interfaces.EmployeeInterfaceDAO;
+import app.emp.dao.interfaces.GenericDaoInterface;
 import app.emp.entities.Employee;
 import app.emp.persistence.PersistenceFactoryManager;
 import jakarta.persistence.EntityManager;
@@ -11,14 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class EmployeeDAO implements EmployeeInterfaceDAO {
+public class GenericDAO<T> implements GenericDaoInterface<T> {
     private static EntityTransaction trns = null;
+    private final Class<T> entityClass;
+
+    public GenericDAO(Class<T> entityClass){
+        this.entityClass = entityClass;
+
+    }
     @Override
-    public void save(Employee emp){
+    public void save(T entity) {
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
             trns = em.getTransaction();
             trns.begin();
-            em.persist(emp);
+            em.persist(entity);
             trns.commit();
         } catch (Exception e) {
             if(trns != null){
@@ -27,40 +33,48 @@ public class EmployeeDAO implements EmployeeInterfaceDAO {
             System.out.println(e.getMessage());
         }
     }
+
     @Override
-    public List<Employee> getEmployees(){
-        List<Employee> emplos = new ArrayList<>();
+    public List<T> getAll() {
+        List<T> list = new ArrayList<>();
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()) {
-            Query query = em.createQuery("SELECT e FROM Employee e");
-            emplos = query.getResultList();
+            Query query = em.createQuery("FROM" + entityClass);
+            list = query.getResultList();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return emplos;
+        return list;
     }
+
     @Override
-    public void deleteEmployee(Employee emp){
+    public void delete(T entity) {
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
             trns = em.getTransaction();
             trns.begin();
-            Employee emplo = em.merge(emp);
-            em.remove(emplo);
+            T managedEntity = em.merge(entity);
+            em.remove(managedEntity);
             trns.commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
     }
+
     @Override
-    public Employee getEmployeeById(UUID id){
-        Employee emp = null;
+    public T getByID(UUID id) {
+        T entity = null;
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
-            emp =  em.find(Employee.class,id);
-            return emp;
+            entity =  em.find(entityClass,id);
+            return entity;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return emp;
+        return entity;
+    }
+
+    @Override
+    public void update(Object entity) {
 
     }
 }
