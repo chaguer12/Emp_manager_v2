@@ -48,7 +48,6 @@ public class EmployeeDAO implements EmployeeInterfaceDAO {
             Employee emplo = em.merge(emp);
             em.remove(emplo);
             trns.commit();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

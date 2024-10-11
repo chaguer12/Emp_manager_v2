@@ -9,14 +9,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet(name = "EmployeeServlet", value = {"/add-employee","/emplist","/delete-emp"})
+@WebServlet(name = "EmployeeServlet", value = {"/add-employee","/emplist","/delete-emp","/update-emp"})
 public class EmployeeServlet extends HttpServlet {
     private EmployeeServiceInterface empService;
 
@@ -31,10 +29,10 @@ public class EmployeeServlet extends HttpServlet {
         if (action != null) {
             switch (action) {
                 case "UPDATE":
-                    //updateEmployee(req, resp);
+                    updateEmployee(req, resp);
                     break;
                 case "PATCH":
-                    //dataTransporter(req, resp);
+                    dataTransporter(req, resp);
                     break;
                 case "LIST":
                     listEmplos(req, resp);
@@ -58,7 +56,7 @@ public class EmployeeServlet extends HttpServlet {
                 insert(req, resp);
                 break;
             case "UPDATE":
-                //updateEmployee(req, resp);
+                updateEmployee(req, resp);
                 break;
             default:
                 listEmplos(req, resp);
@@ -99,6 +97,15 @@ public class EmployeeServlet extends HttpServlet {
         List<Employee> employees = empService.getEmployees();
         req.setAttribute("employees",employees);
         req.getRequestDispatcher("/view/employees/employees.jsp").forward(req,resp);
+    }
+    private void dataTransporter(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        Employee emp = empService.getEmployeeById(UUID.fromString(req.getParameter("id")));
+        req.setAttribute("employee",emp);
+        req.getRequestDispatcher("/view/employees/updateForm.jsp").forward(req, resp);
+    }
+
+    private void updateEmployee(HttpServletRequest req, HttpServletResponse resp){
+
     }
 }
 
