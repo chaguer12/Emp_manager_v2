@@ -13,21 +13,21 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String title;
-    private String desc;
+    private String description;
     private Date endDate;
     private boolean status = true;
-    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "offer")
     private List<JobApplication> jobApplications;
 
     public Offer(){
 
     }
 
-    public Offer(String title, String desc, Date endDate, boolean status){
+    public Offer(String title, String description, Date endDate){
         this.title = title;
-        this.desc = desc;
+        this.description = description;
         this.endDate = endDate;
-        this.status = status;
+
     }
 
     public UUID getId() {
@@ -47,11 +47,11 @@ public class Offer {
     }
 
     public String getDesc() {
-        return desc;
+        return description;
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.description = description;
     }
 
     public Date getEndDate() {

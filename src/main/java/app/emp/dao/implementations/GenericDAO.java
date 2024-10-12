@@ -6,6 +6,7 @@ import app.emp.persistence.PersistenceFactoryManager;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class GenericDAO<T> implements GenericDaoInterface<T> {
 
     }
     @Override
+    @Transactional
     public void save(T entity) {
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
             trns = em.getTransaction();
@@ -27,9 +29,7 @@ public class GenericDAO<T> implements GenericDaoInterface<T> {
             em.persist(entity);
             trns.commit();
         } catch (Exception e) {
-            if(trns != null){
-                trns.rollback();
-            }
+
             System.out.println(e.getMessage());
         }
     }

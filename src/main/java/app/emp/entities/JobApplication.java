@@ -13,7 +13,7 @@ public class JobApplication {
     private String email;
     private String tel;
     @ManyToOne
-    @JoinColumn(name = "offer_id",nullable = false)
+    @JoinColumn(name = "offer_id")
     private Offer offer;
 
     public JobApplication(){
