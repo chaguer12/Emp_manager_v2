@@ -17,6 +17,8 @@ public class OfferServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.sendRedirect("/view/recruiter/AddOffer.jsp");
 
     }
 

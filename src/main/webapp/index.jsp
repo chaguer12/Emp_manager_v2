@@ -12,6 +12,7 @@
 <body>
 
 <div class="container">
+    <a href="/add-offer">recruiter</a>
     <!-- Form Section -->
     <section id="add-form">
         <h1 class="title">Welcome back admin!</h1>
