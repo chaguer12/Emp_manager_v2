@@ -13,20 +13,12 @@ import java.util.UUID;
 public class OfferDAO  implements OfferInterfaceDAO {
 
     private EntityTransaction trns = null;
+    private GenericDAO<Offer> genericDAO = new GenericDAO<>(Offer.class);
 
     @Override
     public void save(Offer offer) {
-        try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
-            trns = em.getTransaction();
-            trns.begin();
-            em.persist(offer);
-            trns.commit();
-        } catch (Exception e) {
-            if(trns != null){
-                trns.rollback();
-            }
-            System.out.println(e.getMessage());
-        }
+        genericDAO.save(offer);
+
     }
 
     public OfferDAO() {
