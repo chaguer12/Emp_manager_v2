@@ -21,7 +21,6 @@ public class GenericDAO<T> implements GenericDaoInterface<T> {
 
     }
     @Override
-    @Transactional
     public void save(T entity) {
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
             trns = em.getTransaction();

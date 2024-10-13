@@ -1,91 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Basic styling */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f7f7f7;
-    color: #333;
-    line-height: 1.6;
-}
-
-.offer-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
 .container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    max-width: 900px;
-    width: 100%;
-    overflow: hidden;
+    margin: 20px;
 }
 
+/* Modal Styling */
+.modal {
+    /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with transparency */
+    display: flex;
+    align-items: center; /* Center the modal vertically */
+    justify-content: center; /* Center the modal horizontally */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 1rem;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Modal width */
+    max-height: 80%; /* Limit height to 80% of the viewport */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Close button */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+}
+
+/* Buttons */
+.open-modal-btn, .submit-btn, .update-btn, .delete-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.open-modal-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
 .image-container img {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    max-width: 500px;
+    display: block;
+    margin: 0 auto;
 }
 
-.form-container {
-    padding: 20px;
-    flex: 1;
+.submit-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
 }
 
-.form-container h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+.update-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
 }
 
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Job offers list */
+.job-offers-list {
+    margin-top: 20px;
+}
+
+.job-offer {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling */
 .form-group {
     margin-bottom: 15px;
 }
 
-.form-group label {
+label {
     display: block;
     margin-bottom: 5px;
-    font-weight: 500;
-    color: #555;
 }
 
-.form-group input,
-.form-group textarea {
+input[type="text"], input[type="date"], textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
-    color: #333;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #007BFF;
-}
-
-.submit-btn {
-    display: inline-block;
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.submit-btn:hover {
-    background-color: #0056b3;
 }

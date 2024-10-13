@@ -12,18 +12,15 @@ import java.util.UUID;
 
 public class OfferDAO  implements OfferInterfaceDAO {
 
-    private EntityTransaction trns = null;
     private GenericDAO<Offer> genericDAO = new GenericDAO<>(Offer.class);
 
     @Override
+    @Transactional
     public void save(Offer offer) {
         genericDAO.save(offer);
 
     }
-
-    public OfferDAO() {
-        super();
-    }
+    
 
     @Override
     public List getAll() {
