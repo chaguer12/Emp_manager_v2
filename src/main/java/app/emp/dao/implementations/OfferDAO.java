@@ -20,11 +20,11 @@ public class OfferDAO  implements OfferInterfaceDAO {
         genericDAO.save(offer);
 
     }
-    
+
 
     @Override
-    public List getAll() {
-        return List.of();
+    public List<Offer> getAll() {
+        return genericDAO.getAll();
     }
 
     @Override

@@ -37,11 +37,11 @@ public class GenericDAO<T> implements GenericDaoInterface<T> {
     public List<T> getAll() {
         List<T> list = new ArrayList<>();
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()) {
-            Query query = em.createQuery("FROM" + entityClass);
+            Query query = em.createQuery("FROM " + entityClass.getName());
             list = query.getResultList();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("hahahahahahah =>" + e.getMessage());
         }
         return list;
     }
