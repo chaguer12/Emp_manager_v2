@@ -6,7 +6,6 @@ import app.emp.persistence.PersistenceFactoryManager;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
-import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;

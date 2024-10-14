@@ -1,0 +1,121 @@
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin: 20px;
+}
+
+/* Modal Styling */
+.modal {
+    /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with transparency */
+    display: flex;
+    align-items: center; /* Center the modal vertically */
+    justify-content: center; /* Center the modal horizontally */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 1rem;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Modal width */
+    max-height: 80%; /* Limit height to 80% of the viewport */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Close button */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+}
+
+/* Buttons */
+.open-modal-btn, .submit-btn, .update-btn, .delete-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.open-modal-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+.image-container img {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    display: block;
+    margin: 0 auto;
+}
+
+.submit-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.update-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Job offers list */
+.job-offers-list {
+    margin-top: 20px;
+}
+
+.job-offer {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="date"], textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
