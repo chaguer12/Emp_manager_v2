@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface OfferInterfaceDAO {
     void save(Offer offer);
-    List getAll();
+    List<Offer> getAll();
     void delete(Offer offer);
     Offer getByID(UUID id);
     void update(Offer offer);

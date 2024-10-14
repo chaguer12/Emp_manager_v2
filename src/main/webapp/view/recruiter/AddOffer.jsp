@@ -17,15 +17,21 @@
 
         <!-- Display Job Offers -->
         <div class="job-offers-list">
-            <!-- Example job offer card -->
+        <c:forEach var="offer" items="${offers}">
+<!-- Example job offer card -->
             <div class="job-offer">
-                <h2>Software Engineer</h2>
-                <p>Description of the job offer.</p>
-                <p>End Date: 2024-12-31</p>
-                <button class="update-btn">Update</button>
+                <h2>${offer.getTitle()}</h2>
+                <p>${offer.getDesc()}</p>
+                <p>End Date: ${offer.getEndDate()}</p>
+                <form method="get" action="${pageContext.request.contextPath}/offer-form" enctype="application/x-www-form-urlencoded">
+                    <input hidden name="_method" value="FORM">
+                    <input hidden name="id" value="${offer.getId()}">
+                    <button class="update-btn">Update</button>
+                </form>
                 <button class="delete-btn">Delete</button>
             </div>
             <!-- More job offers go here -->
+            </c:forEach>
         </div>
     </div>
 </section>

@@ -18,7 +18,7 @@ public class OfferService implements OfferServiceInterface {
 
     @Override
     public List<Offer> getOffers() {
-        return List.of();
+        return offerDAO.getAll();
     }
 
     @Override
