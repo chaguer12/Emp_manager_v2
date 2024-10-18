@@ -15,7 +15,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
+import static java.util.UUID.fromString;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
@@ -26,11 +28,14 @@ class EmployeeServiceTest {
     @InjectMocks
     private EmployeeService employeeService;
     private  Employee emp;
+    private UUID id;
     @BeforeEach
     public void setUp(){
         MockitoAnnotations.initMocks(this);
         emp = new Employee();
         emp.setName("amine");
+        id = fromString("489926e8-239f-476c-b473-8e232e92bae6");
+        emp.setId(id);
 
 
     }
@@ -68,5 +73,15 @@ class EmployeeServiceTest {
         when(employeeDAO.deleteEmployee(emp)).thenReturn(true);
         boolean result = employeeDAO.deleteEmployee(emp);
         assertTrue(result);
+    }
+
+    @Test
+    void getEmployeeByIdTest(){
+
+        when(employeeDAO.getEmployeeById(fromString("489926e8-239f-476c-b473-8e232e92bae6"))).thenReturn(emp);
+        Employee emplo = employeeDAO.getEmployeeById(id);
+        assertNotNull(emplo);
+        verify(employeeDAO,times(1)).getEmployeeById(fromString("489926e8-239f-476c-b473-8e232e92bae6"));
+
     }
 }
