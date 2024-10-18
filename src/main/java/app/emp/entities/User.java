@@ -11,16 +11,16 @@ import java.util.UUID;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    private String name;
-    private String lastname;
-    private String tel;
-    private String email;
-    private String poste;
-    private String password;
-    private double nss;
-    private Date date_insertion;
-    private String department;
+    protected UUID id;
+    protected String name;
+    protected String lastname;
+    protected String tel;
+    protected String email;
+    protected String poste;
+    protected String password;
+    protected double nss;
+    protected Date date_insertion;
+    protected String department;
 
 
     public User(String name, String lastname, String tel, String email, String poste, String password, double nss, Date date_insertion, String department) {

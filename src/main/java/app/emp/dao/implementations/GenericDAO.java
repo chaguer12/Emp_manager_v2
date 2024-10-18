@@ -21,16 +21,19 @@ public class GenericDAO<T> implements GenericDaoInterface<T> {
 
     }
     @Override
-    public void save(T entity) {
+    public T save(T entity) {
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
             trns = em.getTransaction();
             trns.begin();
             em.persist(entity);
             trns.commit();
+            return entity;
+
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
         }
+        return entity;
     }
 
     @Override
@@ -47,16 +50,18 @@ public class GenericDAO<T> implements GenericDaoInterface<T> {
     }
 
     @Override
-    public void delete(T entity) {
+    public boolean delete(T entity) {
         try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
             trns = em.getTransaction();
             trns.begin();
             T managedEntity = em.merge(entity);
             em.remove(managedEntity);
             trns.commit();
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        return false;
 
     }
 
@@ -73,7 +78,17 @@ public class GenericDAO<T> implements GenericDaoInterface<T> {
     }
 
     @Override
-    public void update(Object entity) {
+    public boolean update(T entity) {
+        try(EntityManager em = PersistenceFactoryManager.getEntityManager()){
+            em.getTransaction().begin();
+            em.merge(entity);
+            em.getTransaction().commit();
+            return true;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
 
     }
 }

@@ -1,19 +1,21 @@
 package app.emp.services.implementations;
 
-import app.emp.dao.implementations.GenericDAO;
 import app.emp.dao.implementations.OfferDAO;
-import app.emp.dao.interfaces.GenericDaoInterface;
 import app.emp.entities.Offer;
 import app.emp.services.interfaces.OfferServiceInterface;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.List;
 import java.util.UUID;
-
+@ApplicationScoped
 public class OfferService implements OfferServiceInterface {
-    private final OfferDAO offerDAO = new OfferDAO();
+    @Inject
+    private OfferDAO offerDAO;
+
     @Override
-    public void save(Offer offer) {
-        offerDAO.save(offer);
+    public Offer save(Offer offer) {
+        return offerDAO.save(offer);
     }
 
     @Override
@@ -22,12 +24,19 @@ public class OfferService implements OfferServiceInterface {
     }
 
     @Override
-    public void deleteEmployee(Offer offer) {
-
+    public boolean deleteOffer(Offer offer) {
+        return offerDAO.delete(offer);
     }
 
     @Override
-    public Offer getEmployeeById(UUID id) {
-        return null;
+    public Offer getOfferById(UUID id) {
+        return offerDAO.getByID(id);
+    }
+    @Override
+    public boolean updateOffer(Offer offer){
+        return offerDAO.update(offer);
+    }
+    public boolean getStatus(Offer offer){
+        return offerDAO.getStatus(offer);
     }
 }

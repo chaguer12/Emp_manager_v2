@@ -44,6 +44,12 @@
             <label for="departement">Département :</label>
             <input type="text" id="departement" name="departement" required>
 
+            <label for="salary">Salary:</label>
+            <input type="number" id="salary" name="salary">
+
+            <label for="children">Number of children</label>
+            <input type="number" id="children" name="children">
+
             <input hidden name="_method" value="ADD">
             <button type="submit">Ajouter l'employé</button>
         </form>

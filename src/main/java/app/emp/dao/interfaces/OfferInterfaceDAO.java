@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface OfferInterfaceDAO {
-    void save(Offer offer);
+    Offer save(Offer offer);
     List<Offer> getAll();
-    void delete(Offer offer);
+    boolean delete(Offer offer);
     Offer getByID(UUID id);
-    void update(Offer offer);
+    boolean update(Offer offer);
 
 }

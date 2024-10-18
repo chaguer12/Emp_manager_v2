@@ -4,15 +4,19 @@ import app.emp.dao.implementations.EmployeeDAO;
 import app.emp.dao.interfaces.EmployeeInterfaceDAO;
 import app.emp.entities.Employee;
 import app.emp.services.interfaces.EmployeeServiceInterface;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.List;
 import java.util.UUID;
-
+@ApplicationScoped
 public class EmployeeService implements EmployeeServiceInterface {
-    private final EmployeeInterfaceDAO dao = new EmployeeDAO();
+    @Inject
+    private EmployeeInterfaceDAO dao;
+
     @Override
-    public void save(Employee emp){
-        dao.save(emp);
+    public Employee save(Employee emp){
+        return dao.save(emp);
 
     }
     @Override
@@ -20,15 +24,15 @@ public class EmployeeService implements EmployeeServiceInterface {
         return dao.getEmployees();
     } 
     @Override
-    public void deleteEmployee(Employee employee) {
-        dao.deleteEmployee(employee);
+    public boolean deleteEmployee(Employee employee) {
+        return dao.deleteEmployee(employee);
     }
     @Override
     public Employee getEmployeeById(UUID id){
         return dao.getEmployeeById(id);
     }
-//    @Override
-//    public void updateEmployee(Employee employee) {
-//        dao.updateEmployee(employee);
-//    }
+    @Override
+    public boolean updateEmployee(Employee employee) {
+        return dao.updateEmployee(employee);
+    }
 }

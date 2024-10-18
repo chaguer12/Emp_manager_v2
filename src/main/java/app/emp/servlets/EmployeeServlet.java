@@ -3,6 +3,8 @@ package app.emp.servlets;
 import app.emp.entities.Employee;
 import app.emp.services.implementations.EmployeeService;
 import app.emp.services.interfaces.EmployeeServiceInterface;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,15 +15,12 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
-
+@ApplicationScoped
 @WebServlet(name = "EmployeeServlet", value = {"/add-employee","/emplist","/delete-emp","/update-emp"})
 public class EmployeeServlet extends HttpServlet {
+    @Inject
     private EmployeeServiceInterface empService;
 
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        empService = new EmployeeService();
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -71,7 +70,6 @@ public class EmployeeServlet extends HttpServlet {
             empService.deleteEmployee(emp);
             listEmplos(req, resp);
         }else{
-            System.out.println("heeeeeey => " + emp.getEmail());
             resp.sendRedirect("/add-employee");
 
         }
@@ -85,10 +83,12 @@ public class EmployeeServlet extends HttpServlet {
         String poste = req.getParameter("poste");
         String dprt = req.getParameter("departement");
         String password = req.getParameter("password");
-        Double nss = Double.valueOf(req.getParameter("nss"));
+        double nss = Double.parseDouble(req.getParameter("nss"));
         String date = req.getParameter("insertion");
+        double salary = Double.parseDouble(req.getParameter("salary"));
+        double children = Double.parseDouble(req.getParameter("children"));
         Date insertion = Date.valueOf(date);
-        Employee emp = new Employee(name,lastName,tel,email,poste,password,nss,insertion,dprt);
+        Employee emp = new Employee(name,lastName,tel,email,poste,password,nss,insertion,dprt,salary,children);
         empService.save(emp);
         resp.sendRedirect("/");
     }

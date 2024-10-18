@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface OfferServiceInterface {
-    void save(Offer offer);
+    Offer save(Offer offer);
     List<Offer> getOffers();
-    void deleteEmployee(Offer offer);
-    Offer getEmployeeById(UUID id);
+    boolean deleteOffer(Offer offer);
+    Offer getOfferById(UUID id);
+    boolean updateOffer(Offer offer);
 }

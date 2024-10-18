@@ -16,7 +16,7 @@ public class Offer {
     private String description;
     private Date endDate;
     private boolean status = true;
-    @OneToMany(mappedBy = "offer", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "offer", fetch = FetchType.LAZY)
     private List<JobApplication> jobApplications;
 
     public Offer(){

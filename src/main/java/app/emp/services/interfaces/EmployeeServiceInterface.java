@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface EmployeeServiceInterface {
-    void save(Employee emp);
+    Employee save(Employee emp);
     List<Employee> getEmployees();
-    void deleteEmployee(Employee employee);
+    boolean deleteEmployee(Employee employee);
     Employee getEmployeeById(UUID id);
-//    void updateEmployee(Employee employee);
+    boolean updateEmployee(Employee employee);
 }

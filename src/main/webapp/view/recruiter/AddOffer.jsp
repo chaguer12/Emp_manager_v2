@@ -23,12 +23,27 @@
                 <h2>${offer.getTitle()}</h2>
                 <p>${offer.getDesc()}</p>
                 <p>End Date: ${offer.getEndDate()}</p>
+                <p>Status:
+                    <c:choose>
+                        <c:when test="${offer.isStatus()}"> <!-- Assuming status is a boolean property -->
+                            <span style="color: green;">Active</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span style="color: red;">Inactive</span>
+                        </c:otherwise>
+                    </c:choose>
+                </p>
                 <form method="get" action="${pageContext.request.contextPath}/offer-form" enctype="application/x-www-form-urlencoded">
                     <input hidden name="_method" value="FORM">
                     <input hidden name="id" value="${offer.getId()}">
                     <button class="update-btn">Update</button>
                 </form>
-                <button class="delete-btn">Delete</button>
+                <form method="post" action="${pageContext.request.contextPath}/delete-offer">
+                    <input hidden name="_method" value="DELETE">
+                    <input hidden name="id" value="${offer.getId()}">
+                    <button class="delete-btn">Delete</button>
+                </form>
+
             </div>
             <!-- More job offers go here -->
             </c:forEach>
