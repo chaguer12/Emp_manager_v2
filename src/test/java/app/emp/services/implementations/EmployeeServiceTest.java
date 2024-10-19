@@ -84,4 +84,14 @@ class EmployeeServiceTest {
         verify(employeeDAO,times(1)).getEmployeeById(fromString("489926e8-239f-476c-b473-8e232e92bae6"));
 
     }
+
+    @Test
+    void updateEmployeeTest(){
+        when(employeeDAO.updateEmployee(emp)).thenReturn(true);
+        boolean result = employeeDAO.updateEmployee(emp);
+        assertTrue(result);
+        verify(employeeDAO,times(1)).updateEmployee(emp);
+        
+
+    }
 }
