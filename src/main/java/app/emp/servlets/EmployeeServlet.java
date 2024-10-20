@@ -87,8 +87,9 @@ public class EmployeeServlet extends HttpServlet {
         String date = req.getParameter("insertion");
         double salary = Double.parseDouble(req.getParameter("salary"));
         double children = Double.parseDouble(req.getParameter("children"));
+        double leaveBalance = Double.parseDouble(req.getParameter("leavBalance"));
         Date insertion = Date.valueOf(date);
-        Employee emp = new Employee(name,lastName,tel,email,poste,password,nss,insertion,dprt,salary,children);
+        Employee emp = new Employee(name,lastName,tel,email,poste,password,nss,insertion,dprt,salary,children,leaveBalance);
         empService.save(emp);
         resp.sendRedirect("/");
     }

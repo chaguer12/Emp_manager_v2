@@ -50,6 +50,9 @@
             <label for="children">Number of children</label>
             <input type="number" id="children" name="children">
 
+            <lable for="leavebalance">Leave Balance:</lable>
+            <input type="number" id="leavebalance" name="leaveBalance">
+
             <input hidden name="_method" value="ADD">
             <button type="submit">Ajouter l'employé</button>
         </form>
